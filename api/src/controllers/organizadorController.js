@@ -2,9 +2,9 @@ const connect = require("../db/connect");
 
 module.exports = class organizadorController {
   static async createOrganizador(req, res) {
-    const { telefone, email, password, name } = req.body;
+    const { telefone, email, senha, nome } = req.body;
 
-    if (!telefone || !email || !password || !name) {
+    if (!telefone || !email || !senha || !nome) {
       return res
         .status(400)
         .json({ error: "Todos os campos devem ser preenchidos" });
@@ -19,7 +19,7 @@ module.exports = class organizadorController {
     // Verifica se já existe um organizador com o mesmo email
     else {
       // Construção da query INSERT
-      const query = `INSERT INTO organizador (telefone, email, senha, nome) VALUES ('${telefone}', '${email}', '${password}', '${name}')`;
+      const query = `INSERT INTO organizador (telefone, email, senha, nome) VALUES ('${telefone}', '${email}', '${senha}', '${nome}')`;
       //executando a query criada
       try {
         connect.query(query, function (err, results) {
