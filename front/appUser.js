@@ -25,7 +25,7 @@ function createUser(event) {
   const password = document.getElementById("senha").value;
 
   //requisição HTTP para o endpoint de cadastro de usuário.
-  fetch("http://10.89.240.3:5000/api/v1/user", {
+  fetch("http://10.89.240.99:5000/api/v1/user", {
     //realiza uma chamada http para o servidor (a rota definida)
     method: "POST",
     headers: {
@@ -69,7 +69,7 @@ function createUser(event) {
 } //fechamento do createUser
 
 function getAllUsers() {
-  fetch("http://10.89.240.3:5000/api/v1/user", {
+  fetch("http://10.89.240.99:5000/api/v1/user", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -99,8 +99,8 @@ function getAllUsers() {
     });
 }
 
-function getAllUsersTable(){
-  fetch("http://10.89.240.3:5000/api/v1/user", {
+function getAllUsersTable() {
+  fetch("http://10.89.240.99:5000/api/v1/user", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -136,20 +136,19 @@ function getAllUsersTable(){
         const tdEmail = document.createElement("td");
         tdEmail.textContent = usuario.email;
         tr.appendChild(tdEmail);
-        
-        //Adiciona a linha à tabela 
-        userList.appendChild(tr);
 
+        //Adiciona a linha à tabela
+        userList.appendChild(tr);
       });
-    })  
-    .catch((error) => {      
-      alert("Erro ao obter usuários: "+ error.message);
-      console.error("Erro: ", error.message)
+    })
+    .catch((error) => {
+      alert("Erro ao obter usuários: " + error.message);
+      console.error("Erro: ", error.message);
     });
 }
 
-function getAllOrganizadorTable(){
-  fetch("http://10.89.240.3:5000/api/v1/organizador", {
+function getAllOrganizadorTable() {
+  fetch("http://10.89.240.99:5000/api/v1/organizador", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -164,7 +163,9 @@ function getAllOrganizadorTable(){
       });
     })
     .then((data) => {
-      const organizadorList = document.getElementById("organizador-list-tabela");
+      const organizadorList = document.getElementById(
+        "organizador-list-tabela"
+      );
       //Limpa a lista antes de adicionar novos itens
       organizadorList.innerHTML = "";
 
@@ -185,13 +186,13 @@ function getAllOrganizadorTable(){
         const tdEmail_organizador = document.createElement("td");
         tdEmail_organizador.textContent = organizadores.email;
         tr.appendChild(tdEmail_organizador);
-        
-        //Adiciona a linha à tabela 
+
+        //Adiciona a linha à tabela
         organizadorList.appendChild(tr);
-      })
+      });
     })
     .catch((error) => {
-      alert("Erro ao obter a lista dos organizadores: "+ error.message);
+      alert("Erro ao obter a lista dos organizadores: " + error.message);
       console.error("Erro: ", error.message);
-    })
-  }
+    });
+}
