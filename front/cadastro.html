@@ -57,6 +57,11 @@
           <label for="senha">Senha</label>
           <input type="password" id="senha" name="senha" required />
 
+          <!-- campo para seleção de data  -->
+          <label for="">Escolha a data:</label>
+          <!--"required" impede que o campo fique vazio ao prosseguir. -->
+          <input type="date" id="data" required /> 
+
           <!-- botão para enviar o formulário-->
           <input type="submit" value="Cadastrar" />
         </form>
@@ -73,6 +78,7 @@
             <th>Nome</th>
             <th>CPF</th>
             <th>E-mail</th>
+            <th>Data de nascimento</th>
           </thead>
           <tbody id="user-list-tabela">
             <!--Os usuários serão adicionados aqui-->
