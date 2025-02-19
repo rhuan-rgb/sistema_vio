@@ -130,4 +130,37 @@ module.exports = class userController {
       return res.status(500).json({message: "Erro interno do servidor"});
     }
   }
+  static async loginUser(req, res) {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios" });
+    }
+
+    const query = `SELECT * FROM usuario WHERE email = ?`;
+
+    try {
+      connect.query(query, [email], (err, results) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({ error: "Erro interno do servidor" });
+        }
+        if (results.length === 0) {
+          return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+
+        const user = results[0];
+
+        if (user.password != password) {
+          return res.status(403).json({ error: "Senha incorreta" });
+        }
+
+        return res.status(200).json({ message: "Login bem sucedido", user });
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+  }
 };
+
